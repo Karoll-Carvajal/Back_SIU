@@ -32,4 +32,9 @@ nest g mo modules/private/departament
 nest g s modules/private/departament --no-spec
 nest g co modules/private/departament --no-spec
 
+Create  municipality module
+nest g mo modules/private/municipality
+nest g s modules/private/municipality --no-spec
+nest g co modules/private/municipality --no-spec
+
 
