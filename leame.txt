@@ -1,0 +1,35 @@
+#*********************************************************************
+*Crear proyect nest
+nest new back_siu
+#*********************************************************************
+Instalación de paquetes
+npm  i sharp  
+npm i express
+npm i typeorm
+npm i @nestjs/config
+npm i @typeorm
+npm i typeorm-naming-strategies
+npm i bcryptjs 
+npm i formidable 
+npm i jsonwebtoken 
+
+npm i @types/express --save-dev 
+npm i @types/bcryptjs --save-dev  
+npm i @types/formidable --save-dev  
+npm i @types/jsonwebtoken --save-dev
+
+#**************************************************************************************
+Creation of the  models
+
+#**************************************************************************************
+nest g cl models/departament
+nest g cl models/municipality
+
+#**************************************************************************************
+Create  departament module
+#*********************************************************************
+nest g mo modules/private/departament
+nest g s modules/private/departament --no-spec
+nest g co modules/private/departament --no-spec
+
+
