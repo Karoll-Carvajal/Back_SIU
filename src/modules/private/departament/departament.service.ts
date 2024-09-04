@@ -12,12 +12,12 @@ export class DepartamentService {
         this.departmentRepository  = poolConnection.getRepository(Departament);
     }
 
-    public async consult():Promise<any>{
+    public async consult():Promise<Departament[]>{
         try {
-            return this.departmentRepository.find();
-        } catch (myError) {
-            console.log(myError);
-            throw myError
+             return this.departmentRepository.find(); 
+        } catch (error) {
+            console.log(error);
+            throw error
         }
     }
 }

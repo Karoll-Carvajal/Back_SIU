@@ -12,13 +12,9 @@ export class Departament {
     @OneToMany(()=>Municipality,(municipality)=>municipality.codDepartamentM)
     public municipalitys ? : Municipality[];
 
- 
-
     constructor(codDepartament:number, nameDepartament: string, ){
         this.codDepartament = codDepartament;
         this.nameDepartament = nameDepartament;
 
     }
-
-
 }

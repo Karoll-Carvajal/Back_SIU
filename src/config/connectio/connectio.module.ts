@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { Departament } from 'src/models/departament/departament';
 import { Municipality } from 'src/models/municipality/municipality';
+import { Roles } from 'src/models/roles/roles';
 import { DataSource } from 'typeorm';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
@@ -14,16 +15,16 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
             useFactory: async () => {/* Genera la conección */
                 try {
                     const poolConnection = new DataSource({
-                        type: "postgres", /* Se coloca el nombre del tipo de bd que estamos usando */
+                        type: "postgres",
                         host: String(process.env.HOST),
                         port: Number(process.env.PORT),
                         username: String(process.env.USER),
                         password: String(process.env.PASSWORD),
                         database: String(process.env.DATA_BASE),
-                        synchronize: true,
-                        logging: true,
-                        namingStrategy: new SnakeNamingStrategy(), /* Con esta libreria se  convierte el pimero en mayuscula al usarlo */
-                        entities: [Departament, Municipality]
+                        synchronize: true, //Se sincroniza en la bd
+                        logging: true, //Ocuta la información de la bd
+                        namingStrategy: new SnakeNamingStrategy(), /* Con esta libreria se  convierte el primero en mayuscula al usarlo */
+                        entities: [Departament, Municipality, Roles]
                     });
                     await poolConnection.initialize();
                     console.log('Connection estableced with: ' + String(process.env.DATA_BASE));
@@ -37,4 +38,4 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
     ],
     exports: [DataSource],
 })
-export class ConnectioModule {}
+export class ConnectioModule { }

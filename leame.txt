@@ -23,7 +23,7 @@ Creation of the  models
 
 #**************************************************************************************
 nest g cl models/departament
-nest g cl models/municipality
+    nest g cl models/municipality
 
 #**************************************************************************************
 Create  departament module
@@ -37,4 +37,6 @@ nest g mo modules/private/municipality
 nest g s modules/private/municipality --no-spec
 nest g co modules/private/municipality --no-spec
 
-
+Create Role module 
+nest g s modules/private/role --no-spec
+nest g co modules/private/role --no-spec --> controller
