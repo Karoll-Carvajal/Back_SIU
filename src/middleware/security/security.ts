@@ -4,22 +4,24 @@ import { verify } from 'jsonwebtoken';
 
 
 @Injectable()
-export class Security implements NestMiddleware{
+export class Security implements NestMiddleware {
 
-    public use(req: Request, res: Response, next: NextFunction){
+    public use(req: Request, res: Response, next: NextFunction) {
         if (!req.headers.authorization) {
-            res.status(401).json({respuesta: "Petición negada por el sistema de seguridad"});
+            res.status(401).json({ respuesta: "Petición negada por el sistema de seguridad" });
         } else {
             try {
                 const token = req.headers.authorization;
-                const sessionData =  verify(token, 'thePasswordSecret');
-                req.body.sessionData = sessionData
+                const sessionData = verify(token, 'thePasswordSecret');
+                if (req.method != 'PUT') {
+                    req.body.sessionData = sessionData
+                }
                 next();
             } catch (error) {
-                res.status(401).json({mensaje : "intento de fraude"});
+                res.status(401).json({ mensaje: "intento de fraude" });
             }
         }
     }
-    
+
 
 }

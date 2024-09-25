@@ -18,14 +18,14 @@ export class Places {
     public locationPlace : JSON;
     @Column ({type : "text", name: "area_place", nullable: null})
     public areaPlace : string;
-
+  
     @ManyToOne(()=> User, (user) => user.place,{
-        onDelete: "RESTRICT",
-        onUpdate: "CASCADE",
-      })
-      @JoinColumn([{name:" cod_user ", referencedColumnName: "codUser"}])
-      public users ?: User;
-
+      onDelete: "RESTRICT",
+      onUpdate: "CASCADE",
+    })
+    @JoinColumn([{name:"cod_user", referencedColumnName: "codUser"}])
+    public users ?: User;
+    
       @ManyToOne(()=> Municipality, (municipality) => municipality.place,{
         onDelete: "RESTRICT",
         onUpdate: "CASCADE",

@@ -33,6 +33,7 @@ export class DetailPlaceService {
                 const newDetail = await this.repositoryDetailPlace.save(objDetailPlace);
                 return { message: 'Registro exitoso', detail: newDetail };
             } catch (error) {
+                console.error(error)
                 throw new HttpException('Falló al hacer el registro', HttpStatus.BAD_REQUEST);
             }
         }

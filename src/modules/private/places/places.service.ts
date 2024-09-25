@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { log } from 'console';
 import { Places } from 'src/models/places/places';
 import { DataSource, Repository } from 'typeorm';
 
@@ -56,18 +57,21 @@ export class PlacesService {
 
    
 
-    public async update(objPlace : Places, code: number) : Promise<any>{
+    public async update(objPlace: Places, code: number): Promise<any> {
         try {
-            if(await this.placeVerification(objPlace.namePlace)){
-                return new HttpException("El sitio ya existe" , HttpStatus.BAD_REQUEST)
-            }else{
-                const objUpdate = await this.repositoryPlaces.update({codPlace :code},objPlace);
-                return new  HttpException ({menssage: "Sitio actualizado", objPlace:objUpdate},HttpStatus.OK );
+           
+            if (await this.placeVerification(objPlace.namePlace)) {
+                return new HttpException("Ingresa nueva información", HttpStatus.BAD_REQUEST);
+            } else {
+                const objUpdate = await this.repositoryPlaces.update({ codPlace: code }, objPlace);
+                return new HttpException({ message: "Sitio actualizado", objPlace: objUpdate }, HttpStatus.OK);
             }
         } catch (error) {
+            console.error("El error es:", error);
             throw new HttpException("Error al actualizar el sitio", HttpStatus.BAD_REQUEST);
         }
     }
+
 
     public async delete(objPlace : Places, code: number) : Promise <any>{
         try {
