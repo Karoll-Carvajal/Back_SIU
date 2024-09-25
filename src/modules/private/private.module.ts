@@ -3,6 +3,9 @@ import { Module } from '@nestjs/common';
 import { MunicipalityModule } from './municipality/municipality.module';
 import { RoleModule } from './role/role.module';
 import { RouterModule, Routes } from '@nestjs/core';
+import { PlacesModule } from './places/places.module';
+import { DetailModule } from './detail/detail.module';
+import { DetailPlaceModule } from './detail_place/detail_place.module';
 
 const routes: Routes = [
     {
@@ -10,7 +13,10 @@ const routes: Routes = [
         children: [
             DepartamentModule,
             MunicipalityModule,
-            RoleModule
+            RoleModule,
+            PlacesModule,
+            DetailModule,
+            DetailPlaceModule
         ]
     }
 ]
@@ -18,7 +24,10 @@ const routes: Routes = [
     imports: [DepartamentModule,
         MunicipalityModule,
         RoleModule,
-        RouterModule.register(routes)
+        RouterModule.register(routes),
+        PlacesModule,
+        DetailModule,
+        DetailPlaceModule
     ],
     exports:[RouterModule]
 })

@@ -1,6 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { Departament } from "../departament/departament";
 import { join } from "path";
+import { Places } from "../places/places";
 
 @Entity("municipalities", { schema: "public" })
 export class Municipality {
@@ -24,6 +25,8 @@ export class Municipality {
   @JoinColumn([{name:"cod_departament", referencedColumnName: "codDepartament"}])
   public codDepartamentM ?: Departament;
 
+  @OneToMany(()=>Places,(place)=>place.municipality)
+  public place ? : Places[];
 
   constructor(codMu: number, nom: string, cap: number, cod: number) {
     this.codMunicipality = codMu;

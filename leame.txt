@@ -23,7 +23,7 @@ Creation of the  models
 
 #**************************************************************************************
 nest g cl models/departament
-    nest g cl models/municipality
+nest g cl models/municipality
 
 #**************************************************************************************
 Create  departament module
